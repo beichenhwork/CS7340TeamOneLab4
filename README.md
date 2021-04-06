@@ -1,4 +1,4 @@
-# CS7460TeamOneLab4
+# CS7340TeamOneLab4
 Here is the repository for CS7460 Lab 4 in Team One
 
 ## Before run the MinimizingMakeChange.java main class, please recompile three files:
