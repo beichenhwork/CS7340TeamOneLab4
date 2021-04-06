@@ -78,7 +78,6 @@ public class MinimizingMakeChange {
     // 1. sc1 -> sc2 -> sc3
     // 2. sc1 -> sc3
     // So we create two populations to evolve
-
     Configuration conf = new DefaultConfiguration();
 
     // Care that the fittest individual of the current population is
@@ -93,6 +92,8 @@ public class MinimizingMakeChange {
     // MinimizingMakeChangeFitnessFunction. We construct it with
     // the target amount of change passed in to this method.
     // ---------------------------------------------------------
+    List<Pair<String, List<Pair<String, List<Pair<String, Double>>>>>> datalist = new ArrayList<>(ReadJsonFile.createJsonFile());
+
 
     FitnessFunction myFunc =
         new MinimizingMakeChangeFitnessFunction(a_targetChangeAmount);
@@ -117,7 +118,7 @@ public class MinimizingMakeChange {
     // --------------------------------------------------------------
 
     // get original dataset from input.json and save it into datalist map.
-    List<Pair<String, List<Pair<String, List<Pair<String, Double>>>>>> datalist = new ArrayList<>(ReadJsonFile.createJsonFile());
+
 
     // Create a n size sample genes where n equals to number of service cluster (datalist.size())
     // For here, n = 3 -> sc1 - sc2 - sc3
@@ -327,7 +328,7 @@ public class MinimizingMakeChange {
               MinimizingMakeChangeFitnessFunction.
                       getNumberOfCoinsAtGene(
                               bestSolutionSoFar1, 0) + " .");
-      System.out.println("\t" +"service 2"+
+      System.out.println("\t" +"service 3"+
               MinimizingMakeChangeFitnessFunction.
                       getNumberOfCoinsAtGene(
                               bestSolutionSoFar1, 1) + " .");

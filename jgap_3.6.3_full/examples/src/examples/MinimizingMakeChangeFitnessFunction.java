@@ -9,7 +9,11 @@
  */
 package examples;
 
+import javafx.util.Pair;
 import org.jgap.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Sample fitness function for the MakeChange example.
@@ -26,12 +30,40 @@ public class MinimizingMakeChangeFitnessFunction
   private final int m_targetAmount;
 
   public static final int MAX_BOUND = 4000;
+  List<Pair<String, List<Pair<String, List<Pair<String, Double>>>>>> datalist = new ArrayList<>(ReadJsonFile.createJsonFile());
 
+  private double s1_costMax = 0;
+  private double s1_timeMax = 0;
+
+  private double s2_costMax = 0;
+  private double s2_timeMax = 0;
+
+  private double s3_costMax = 0;
+  private double s3_timeMax = 0;
+
+  private double best_costMax = 0;
+  private double best_timeMax = 0;
   public MinimizingMakeChangeFitnessFunction(int a_targetAmount) {
     if (a_targetAmount < 1 || a_targetAmount >= MAX_BOUND) {
       throw new IllegalArgumentException(
           "Change amount must be between 1 and " + MAX_BOUND + " cents.");
     }
+    for(int i = 0 ; i < datalist.size();i++){
+      if(datalist.get(i).getKey().equals("SC1")){
+        s1_costMax = getCostMaxValue(datalist.get(i).getValue());
+        s1_timeMax = getTimeMaxValue(datalist.get(i).getValue());
+      }else if(datalist.get(i).getKey().equals("SC2")){
+        s2_costMax = getCostMaxValue(datalist.get(i).getValue());
+        s2_timeMax = getTimeMaxValue(datalist.get(i).getValue());
+      }else{
+        s3_costMax = getCostMaxValue(datalist.get(i).getValue());
+        s3_timeMax = getTimeMaxValue(datalist.get(i).getValue());
+      }
+    }
+
+    best_costMax = s1_costMax + s2_costMax + s3_costMax;
+    best_timeMax = s1_timeMax + s2_timeMax + s3_timeMax;
+
     m_targetAmount = a_targetAmount;
   }
 
@@ -65,9 +97,7 @@ public class MinimizingMakeChangeFitnessFunction
     // fitness value for solutions representing fewer total coins, and
     // lower fitness values for solutions representing more total coins.
     // ------------------------------------------------------------------
-    int changeAmount = amountOfChange(a_subject);
-    int totalCoins = getTotalNumberOfCoins(a_subject);
-    int changeDifference = Math.abs(m_targetAmount - changeAmount);
+
     double fitness;
     if (defaultComparation) {
       fitness = 0.0d;
@@ -75,37 +105,178 @@ public class MinimizingMakeChangeFitnessFunction
     else {
       fitness = MAX_BOUND/2;
     }
-    // Step 1: Determine distance of amount represented by solution from
-    // the target amount. If the change difference is greater than zero we
-    // will divide one by the difference in change between the
-    // solution amount and the target amount. That will give the desired
-    // effect of returning higher values for amounts closer to the target
-    // amount and lower values for amounts further away from the target
-    // amount.
-    // In the case where the change difference is zero it means that we have
-    // the correct amount and we assign a higher fitness value.
-    // ---------------------------------------------------------------------
-    if (defaultComparation) {
-      fitness += changeDifferenceBonus(MAX_BOUND/2, changeDifference);
+
+    double fc = 0.0;
+    //1 - ((input_s1_cost + input_s2_cost + input_s3_cost)/ best_costMax);
+    double fr = 0.0;
+    //input_s1_rel * input_s2_rel + input_s3_rel;
+    double ft = 0.0;
+    //1 - ((input_s1_time + input_s2_time + input_s3_time)/ best_timeMax);
+    double fa = 0.0;
+
+    //List<Pair<String, List<Pair<String, List<Pair<String, Double>>>>>> datalist
+    if(a_subject.size() == 3 ){
+      int sc1Service = getNumberOfCoinsAtGene(a_subject,0);
+      int sc2Service = getNumberOfCoinsAtGene(a_subject,1);
+      int sc3Service = getNumberOfCoinsAtGene(a_subject,2);
+      String S1x = "S1"+sc1Service;
+      String S2x = "S2"+sc2Service;
+      String S3x = "S3"+sc3Service;
+      fc = 1 - getCost(S1x,S2x,S3x)/best_costMax;
+      fr = getReliability(S1x,S2x,S3x) ;
+      ft = 1 - getTime(S1x,S2x,S3x)/best_timeMax;
+      fa = getAvailability(S1x,S2x,S3x);
+    }else if(a_subject.size() == 2){
+      int sc1Service = getNumberOfCoinsAtGene(a_subject,0);
+      int sc3Service = getNumberOfCoinsAtGene(a_subject,1);
+      String S1x = "S1"+sc1Service;
+      String S3x = "S3"+sc3Service;
+      fc = 1 - getCost(S1x,"",S3x)/best_costMax;
+      fr = getReliability(S1x,"",S3x);
+      ft = 1 - getTime(S1x,"",S3x)/best_timeMax;
+      fa = getAvailability(S1x,"",S3x);
     }
-    else {
-      fitness -= changeDifferenceBonus(MAX_BOUND/2, changeDifference);
-    }
-    // Step 2: We divide the fitness value by a penalty based on the number of
-    // coins. The higher the number of coins the higher the penalty and the
-    // smaller the fitness value.
-    // And inversely the smaller number of coins in the solution the higher
-    // the resulting fitness value.
-    // -----------------------------------------------------------------------
-    if (defaultComparation) {
-      fitness -= computeCoinNumberPenalty(MAX_BOUND/2, totalCoins);
-    }
-    else {
-      fitness += computeCoinNumberPenalty(MAX_BOUND/2, totalCoins);
-    }
+    //input_s1_avail * input_s2_avail + input_s3_avail;
+    fitness = (fc * 0.35) + (fr * 0.1) + (ft * 0.2) + (fa * 0.35);
+
     // Make sure fitness value is always positive.
     // -------------------------------------------
-    return Math.max(1.0d, fitness);
+    return fitness;
+  }
+  public double getAvailability(String S1x, String S2x, String S3x){
+    double res = 1.0;
+    for(int i = 0 ; i < datalist.size();i++){
+        for(int j = 0 ; j <datalist.get(i).getValue().size();j++){
+          if(datalist.get(i).getValue().get(j).getKey().equals(S1x)){
+            for(int z = 0 ; z < datalist.get(i).getValue().get(j).getValue().size();z++){
+              if(datalist.get(i).getValue().get(j).getValue().get(z).getKey().equals("availability")) {
+                res *= datalist.get(i).getValue().get(j).getValue().get(z).getValue();
+              }
+            }
+          }else if(datalist.get(i).getValue().get(j).getKey().equals(S2x)){
+            for(int z = 0 ; z < datalist.get(i).getValue().get(j).getValue().size();z++){
+              if(datalist.get(i).getValue().get(j).getValue().get(z).getKey().equals("availability")) {
+                res *= datalist.get(i).getValue().get(j).getValue().get(z).getValue();
+              }
+            }
+          }
+          else if(datalist.get(i).getValue().get(j).getKey().equals(S3x)){
+            for(int z = 0 ; z < datalist.get(i).getValue().get(j).getValue().size();z++){
+              if(datalist.get(i).getValue().get(j).getValue().get(z).getKey().equals("availability")) {
+                res *= datalist.get(i).getValue().get(j).getValue().get(z).getValue();
+              }
+            }
+          }
+        }
+      }
+    return res;
+  }
+  public double getReliability(String S1x, String S2x, String S3x){
+    double res = 1.0;
+    for(int i = 0 ; i < datalist.size();i++){
+      for(int j = 0 ; j <datalist.get(i).getValue().size();j++){
+        if(datalist.get(i).getValue().get(j).getKey().equals(S1x)){
+          for(int z = 0 ; z < datalist.get(i).getValue().get(j).getValue().size();z++){
+            if(datalist.get(i).getValue().get(j).getValue().get(z).getKey().equals("reliability")) {
+              res *= datalist.get(i).getValue().get(j).getValue().get(z).getValue();
+            }
+          }
+        }else if(datalist.get(i).getValue().get(j).getKey().equals(S2x)){
+          for(int z = 0 ; z < datalist.get(i).getValue().get(j).getValue().size();z++){
+            if(datalist.get(i).getValue().get(j).getValue().get(z).getKey().equals("reliability")) {
+              res *= datalist.get(i).getValue().get(j).getValue().get(z).getValue();
+            }
+          }
+        }
+        else if(datalist.get(i).getValue().get(j).getKey().equals(S3x)){
+          for(int z = 0 ; z < datalist.get(i).getValue().get(j).getValue().size();z++){
+            if(datalist.get(i).getValue().get(j).getValue().get(z).getKey().equals("reliability")) {
+              res *= datalist.get(i).getValue().get(j).getValue().get(z).getValue();
+            }
+          }
+        }
+      }
+    }
+    return res;
+  }
+  public double getCost(String S1x, String S2x, String S3x){
+    double res = 0.0;
+    for(int i = 0 ; i < datalist.size();i++){
+      for(int j = 0 ; j <datalist.get(i).getValue().size();j++){
+        if(datalist.get(i).getValue().get(j).getKey().equals(S1x)){
+          for(int z = 0 ; z < datalist.get(i).getValue().get(j).getValue().size();z++){
+            if(datalist.get(i).getValue().get(j).getValue().get(z).getKey().equals("cost")) {
+              res += datalist.get(i).getValue().get(j).getValue().get(z).getValue();
+            }
+          }
+        }else if(datalist.get(i).getValue().get(j).getKey().equals(S2x)){
+          for(int z = 0 ; z < datalist.get(i).getValue().get(j).getValue().size();z++){
+            if(datalist.get(i).getValue().get(j).getValue().get(z).getKey().equals("cost")) {
+              res += datalist.get(i).getValue().get(j).getValue().get(z).getValue();
+            }
+          }
+        }
+        else if(datalist.get(i).getValue().get(j).getKey().equals(S3x)){
+          for(int z = 0 ; z < datalist.get(i).getValue().get(j).getValue().size();z++){
+            if(datalist.get(i).getValue().get(j).getValue().get(z).getKey().equals("cost")) {
+              res += datalist.get(i).getValue().get(j).getValue().get(z).getValue();
+            }
+          }
+        }
+      }
+    }
+    return res;
+  }
+  public double getTime(String S1x, String S2x, String S3x){
+    double res = 0.0;
+    for(int i = 0 ; i < datalist.size();i++){
+      for(int j = 0 ; j <datalist.get(i).getValue().size();j++){
+        if(datalist.get(i).getValue().get(j).getKey().equals(S1x)){
+          for(int z = 0 ; z < datalist.get(i).getValue().get(j).getValue().size();z++){
+            if(datalist.get(i).getValue().get(j).getValue().get(z).getKey().equals("time")) {
+              res += datalist.get(i).getValue().get(j).getValue().get(z).getValue();
+            }
+          }
+        }else if(datalist.get(i).getValue().get(j).getKey().equals(S2x)){
+          for(int z = 0 ; z < datalist.get(i).getValue().get(j).getValue().size();z++){
+            if(datalist.get(i).getValue().get(j).getValue().get(z).getKey().equals("time")) {
+              res += datalist.get(i).getValue().get(j).getValue().get(z).getValue();
+            }
+          }
+        }
+        else if(datalist.get(i).getValue().get(j).getKey().equals(S3x)){
+          for(int z = 0 ; z < datalist.get(i).getValue().get(j).getValue().size();z++){
+            if(datalist.get(i).getValue().get(j).getValue().get(z).getKey().equals("time")) {
+              res += datalist.get(i).getValue().get(j).getValue().get(z).getValue();
+            }
+          }
+        }
+      }
+    }
+    return res;
+  }
+
+  public static double getCostMaxValue(List<Pair<String, List<Pair<String, Double>>>> services){
+    double res = 0.0;
+    for(int i = 0 ; i < services.size();i++){
+      for(int j = 0 ; j < services.get(i).getValue().size();j++){
+        if(services.get(i).getValue().get(j).getKey().equals("cost")){
+          res = Math.max(res,services.get(i).getValue().get(j).getValue());
+        }
+      }
+    }
+    return res;
+  }
+  public static double getTimeMaxValue(List<Pair<String, List<Pair<String, Double>>>> services){
+    double res = 0.0;
+    for(int i = 0 ; i < services.size();i++){
+      for(int j = 0 ; j < services.get(i).getValue().size();j++){
+        if(services.get(i).getValue().get(j).getKey().equals("time")){
+          res = Math.max(res,services.get(i).getValue().get(j).getValue());
+        }
+      }
+    }
+    return res;
   }
 
   /**
@@ -172,7 +343,6 @@ public class MinimizingMakeChangeFitnessFunction
   public static int amountOfChange(IChromosome a_potentialSolution) {
     int numQuarters = getNumberOfCoinsAtGene(a_potentialSolution, 0);
     int numDimes = getNumberOfCoinsAtGene(a_potentialSolution, 1);
-
 
     return (numQuarters * 25) + (numDimes * 10);
 
