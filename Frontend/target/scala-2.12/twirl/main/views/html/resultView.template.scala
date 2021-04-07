@@ -59,7 +59,7 @@ Seq[Any](format.raw/*2.1*/("""<!DOCTYPE html>
         <div class="row">
             <div class="card col s4 offset-s4 ">
                 <div class="card-panel">
-                    <form>
+                    <form action=""""),_display_(/*31.36*/routes/*31.42*/.HomeController.gaHandler()),format.raw/*31.69*/("""">
                         <div>
                             <h5>
                                 The results can be displayed here using the Play Framework.
@@ -67,6 +67,7 @@ Seq[Any](format.raw/*2.1*/("""<!DOCTYPE html>
                             """),format.raw/*36.29*/("""</h5>
                             <hr>
                         </div>
+
                         <div class="row">
                             <button id="api-search-button" class="btn col s4 offset-s4" type="submit">View Best Fit</button>
                         </div>
@@ -92,11 +93,11 @@ Seq[Any](format.raw/*2.1*/("""<!DOCTYPE html>
 
               /*
                   -- GENERATED --
-                  DATE: 2021-04-05T20:45:54.472
-                  SOURCE: C:/Users/c18jo/OneDrive/Desktop/Lab 4/Frontend/app/views/resultView.scala.html
-                  HASH: 4b837332870efc049b8fc501327ab45e1377c38c
-                  MATRIX: 953->1|1064->19|2828->1758|2856->1765|2913->1794
-                  LINES: 28->1|33->2|66->35|66->35|67->36
+                  DATE: 2021-04-06T23:16:53.105
+                  SOURCE: /Users/huasucaster/Desktop/CS Master/CS7340/Lab 4/CS7340TeamOneLab4/Frontend/app/views/resultView.scala.html
+                  HASH: 0d78c518de5651c0aff14cbc706f6221badff232
+                  MATRIX: 953->1|1064->19|2648->1578|2663->1584|2711->1611|2929->1802|2957->1809|3014->1838
+                  LINES: 28->1|33->2|62->31|62->31|62->31|66->35|66->35|67->36
                   -- GENERATED --
               */
           

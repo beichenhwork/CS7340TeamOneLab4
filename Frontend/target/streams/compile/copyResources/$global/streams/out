@@ -1,4 +1,4 @@
 [debug] Copy resource mappings: 
-[debug] 	(C:\Users\c18jo\OneDrive\Desktop\Lab 4\Frontend\conf\application.conf,C:\Users\c18jo\OneDrive\Desktop\Lab 4\Frontend\target\scala-2.12\classes\application.conf)
-[debug] 	(C:\Users\c18jo\OneDrive\Desktop\Lab 4\Frontend\conf\logback.xml,C:\Users\c18jo\OneDrive\Desktop\Lab 4\Frontend\target\scala-2.12\classes\logback.xml)
-[debug] 	(C:\Users\c18jo\OneDrive\Desktop\Lab 4\Frontend\conf\routes,C:\Users\c18jo\OneDrive\Desktop\Lab 4\Frontend\target\scala-2.12\classes\routes)
+[debug] 	(/Users/huasucaster/Desktop/CS Master/CS7340/Lab 4/CS7340TeamOneLab4/Frontend/conf/logback.xml,/Users/huasucaster/Desktop/CS Master/CS7340/Lab 4/CS7340TeamOneLab4/Frontend/target/scala-2.12/classes/logback.xml)
+[debug] 	(/Users/huasucaster/Desktop/CS Master/CS7340/Lab 4/CS7340TeamOneLab4/Frontend/conf/application.conf,/Users/huasucaster/Desktop/CS Master/CS7340/Lab 4/CS7340TeamOneLab4/Frontend/target/scala-2.12/classes/application.conf)
+[debug] 	(/Users/huasucaster/Desktop/CS Master/CS7340/Lab 4/CS7340TeamOneLab4/Frontend/conf/routes,/Users/huasucaster/Desktop/CS Master/CS7340/Lab 4/CS7340TeamOneLab4/Frontend/target/scala-2.12/classes/routes)

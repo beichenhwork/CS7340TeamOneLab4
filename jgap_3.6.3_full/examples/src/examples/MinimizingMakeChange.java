@@ -215,7 +215,7 @@ public class MinimizingMakeChange {
           int serviceNum = service.size();
 
           sampleGenes1[1] = new IntegerGene(conf1,1,serviceNum);
-        } else{
+        }else {
           throw new Exception("You got an wrong service cluster.");
         }
       }catch (Exception e){

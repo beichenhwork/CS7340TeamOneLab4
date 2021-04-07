@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
-// @SOURCE:C:/Users/c18jo/OneDrive/Desktop/Lab 4/Frontend/conf/routes
-// @DATE:Mon Apr 05 20:18:10 MDT 2021
+// @SOURCE:/Users/huasucaster/Desktop/CS Master/CS7340/Lab 4/CS7340TeamOneLab4/Frontend/conf/routes
+// @DATE:Tue Apr 06 23:16:52 CDT 2021
 
 import play.api.mvc.Call
 
@@ -19,9 +19,15 @@ package controllers {
 
   
     // @LINE:7
-    def index(): Call = {
+    def resultView(): Call = {
       
       Call("GET", _prefix)
+    }
+  
+    // @LINE:9
+    def gaHandler(): Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "gaResult")
     }
   
   }
