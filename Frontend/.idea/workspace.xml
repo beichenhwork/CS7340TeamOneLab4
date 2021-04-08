@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ccedc1b1-c9f3-4b33-8019-4ffbf616e5f1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/application.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/application.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/streams/$global/dependencyPositions/$global/streams/update_cache_2.12/output_dsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/$global/dependencyPositions/$global/streams/update_cache_2.12/output_dsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/streams/compile/compileIncremental/$global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/compileIncremental/$global/streams/out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/utils/MinimizingMakeChange.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/utils/MinimizingMakeChange.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/logs/application.log" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/logs/application.log" afterDir="false" />
-    </list>
+    <list default="true" id="ccedc1b1-c9f3-4b33-8019-4ffbf616e5f1" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,7 +30,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="JupyterTrust" id="1e04a183-631d-4da5-b8d2-7822e5b4d6fb" />
   <component name="MavenImportPreferences">
@@ -210,6 +203,9 @@
       <workItem from="1617769242054" duration="346000" />
       <workItem from="1617769892107" duration="4708000" />
       <workItem from="1617853291863" duration="502000" />
+      <workItem from="1617899587244" duration="29000" />
+      <workItem from="1617899644093" duration="1290000" />
+      <workItem from="1617906294724" duration="355000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit Advance requirement 4,5">
       <created>1573100508310</created>
@@ -270,16 +266,6 @@
           <url>file://$PROJECT_DIR$/app/utils/HttpUtil.java</url>
           <line>42</line>
           <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/controllers/HomeController.java</url>
-          <line>49</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/controllers/HomeController.java</url>
-          <line>65</line>
-          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

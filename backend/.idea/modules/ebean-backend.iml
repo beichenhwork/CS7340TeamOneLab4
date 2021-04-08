@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module external.linked.project.id="root [file:/Users/huasucaster/Desktop/CS%20Master/CS7340/Lab%204/CS7340TeamOneLab4/backend/]" external.linked.project.path="$MODULE_DIR$/../.." external.root.project.path="$MODULE_DIR$/../.." external.system.id="SBT" type="JAVA_MODULE" version="4">
+<module external.linked.project.id="root [file:/Users/beichenhu/Desktop/Service-Oriented%20Computing%20/Lab4/lab4/CS7340TeamOneLab4/backend/]" external.linked.project.path="$MODULE_DIR$/../.." external.root.project.path="$MODULE_DIR$/../.." external.system.id="SBT" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet type="Spring" name="Spring">
       <configuration />
@@ -175,8 +175,10 @@
     <orderEntry type="module-library">
       <library name="sbt: unmanaged-jars">
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../lib/mallet-deps.jar!/" />
-          <root url="jar://$MODULE_DIR$/../../lib/mallet.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../lib/jgap-examples.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../lib/jgap-tests.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../lib/jgap.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../lib/json-20210307.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -186,7 +188,5 @@
     <orderEntry type="library" scope="TEST" name="sbt: xalan:xalan:2.7.2:jar" level="project" />
     <orderEntry type="library" name="sbt: xerces:xercesImpl:2.11.0:jar" level="project" />
     <orderEntry type="library" name="sbt: xml-apis:xml-apis:1.4.01:jar" level="project" />
-    <orderEntry type="library" exported="" name="jgap-tests" level="project" />
-    <orderEntry type="library" exported="" name="json-20210307" level="project" />
   </component>
 </module>

@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
-// @SOURCE:/Users/huasucaster/Desktop/CS Master/CS7340/Lab 4/CS7340TeamOneLab4/Frontend/conf/routes
-// @DATE:Tue Apr 06 23:16:52 CDT 2021
+// @SOURCE:/Users/beichenhu/Desktop/Service-Oriented Computing /Lab4/lab4/CS7340TeamOneLab4/Frontend/conf/routes
+// @DATE:Thu Apr 08 13:28:21 CDT 2021
 
 package controllers;
 

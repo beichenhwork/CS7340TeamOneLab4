@@ -13,7 +13,6 @@
 [debug] dependency descriptor has been mediated: dependency: org.scala-lang#scala-reflect;2.10.7 {default=[default(compile)]} => dependency: org.scala-lang#scala-reflect;2.10.7 {default=[default(compile)]}
 [info] Resolving org.scala-sbt#sbt;0.13.17 ...
 [debug] sbt-chain: Checking cache for: dependency: org.scala-sbt#sbt;0.13.17 {default=[default(compile)]}
-[debug] no default cache defined: set to /Users/huasucaster/.ivy2/cache
 [debug] sbt-chain: module revision found in cache: org.scala-sbt#sbt;0.13.17
 [debug] 	found org.scala-sbt#sbt;0.13.17 in sbt-chain
 [debug] dependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.7 {compile=[default(compile)]} => dependency: org.scala-lang#scala-library;2.10.7 {compile=[default(compile)]}
@@ -3350,9 +3349,9 @@
 [debug] 	[NOT REQUIRED] org.scala-sbt#test-interface;1.0!test-interface.jar
 [debug] 	[NOT REQUIRED] org.scala-sbt#apply-macro;0.13.17!apply-macro.jar
 [debug] 	[NOT REQUIRED] org.scala-sbt#template-resolver;0.1!template-resolver.jar
-[debug] :: resolution report :: resolve 1165ms :: artifacts dl 41ms
-[debug] 	report for client#client$sbt_2.10;1.0 default produced in /Users/huasucaster/Desktop/CS Master/CS7340/Lab 4/CS7340TeamOneLab4/Frontend/target/scala-2.12/resolution-cache/reports/client-client$sbt_2.10-default.xml
-[debug] 	resolve done (1165ms resolve - 41ms download)
+[debug] :: resolution report :: resolve 966ms :: artifacts dl 92ms
+[debug] 	report for client#client$sbt_2.10;1.0 default produced in /Users/beichenhu/Desktop/Service-Oriented Computing /Lab4/lab4/CS7340TeamOneLab4/Frontend/target/scala-2.12/resolution-cache/reports/client-client$sbt_2.10-default.xml
+[debug] 	resolve done (966ms resolve - 92ms download)
 [debug] Using inline dependencies specified in Scala.
 [debug] :: resolving dependencies :: client#client$sources_2.10;1.0
 [debug] 	confs: [default]
@@ -4750,6 +4749,8 @@
 [debug] 	[NOT REQUIRED] io.apigee.trireme#trireme-core;0.9.4!trireme-core.jar(src)
 [debug] 	[NOT REQUIRED] com.typesafe.play#play-exceptions;2.7.3!play-exceptions.jar(src)
 [debug] 	[NOT REQUIRED] org.scala-sbt#persist;0.13.17!persist.jar(src)
-[debug] :: resolution report :: resolve 218ms :: artifacts dl 28ms
-[debug] 	report for client#client$sources_2.10;1.0 default produced in /Users/huasucaster/Desktop/CS Master/CS7340/Lab 4/CS7340TeamOneLab4/Frontend/target/scala-2.12/resolution-cache/reports/client-client$sources_2.10-default.xml
-[debug] 	resolve done (218ms resolve - 28ms download)
+[debug] :: resolution report :: resolve 256ms :: artifacts dl 34ms
+[debug] 	report for client#client$sources_2.10;1.0 default produced in /Users/beichenhu/Desktop/Service-Oriented Computing /Lab4/lab4/CS7340TeamOneLab4/Frontend/target/scala-2.12/resolution-cache/reports/client-client$sources_2.10-default.xml
+[debug] 	resolve done (256ms resolve - 34ms download)
+.10-default.xml
+[debug] 	resolve done (242ms resolve - 36ms download)
