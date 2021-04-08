@@ -133,8 +133,6 @@ public class MinimizingMakeChange {
           int serviceNum = service.size();
           sampleGenes[2] = new IntegerGene(conf,1,serviceNum);
 
-        } else{
-          throw new Exception("You got an wrong service cluster.");
         }
       }catch (Exception e){
         e.printStackTrace();
@@ -205,8 +203,6 @@ public class MinimizingMakeChange {
           int serviceNum = service.size();
 
           sampleGenes1[1] = new IntegerGene(conf1,1,serviceNum);
-        } else{
-          throw new Exception("You got an wrong service cluster.");
         }
       }catch (Exception e){
         e.printStackTrace();
@@ -298,19 +294,19 @@ public class MinimizingMakeChange {
       res.put("bestSolution",bestSolution);
       System.out.println(bestSolution);
       bestSolutionSoFar.setFitnessValueDirectly(-1);
-      String service1 = "\t" +"service 1"+
+      String service1 = "    " +"service 1"+
               MinimizingMakeChangeFitnessFunction.
                       getNumberOfCoinsAtGene(
-                              bestSolutionSoFar, 0) + " .";
-      String service2 = "\t" +"service 2"+
+                              bestSolutionSoFar, 0) ;
+      String service2 = "    " +"service 2"+
               MinimizingMakeChangeFitnessFunction.
                       getNumberOfCoinsAtGene(
-                              bestSolutionSoFar, 1) + " .";
-      String service3 = "\t" +"service 3"+
+                              bestSolutionSoFar, 1) ;
+      String service3 = "    " +"service 3"+
               MinimizingMakeChangeFitnessFunction.
                       getNumberOfCoinsAtGene(
-                              bestSolutionSoFar, 2) + " .";
-      String services = service1 + service2 + service3;
+                              bestSolutionSoFar, 2) ;
+      String services = service1 +"->"+ service2 +"->"+ service3;
       res.put("services",services);
       System.out.println("It contains the following: ");
       System.out.println(service1);
@@ -323,15 +319,15 @@ public class MinimizingMakeChange {
       System.out.println(bestSolution);
       bestSolutionSoFar1.setFitnessValueDirectly(-1);
       System.out.println("It contains the following: ");
-      String service1 = "\t" +"service 1"+
+      String service1 = "    " +"service 1"+
               MinimizingMakeChangeFitnessFunction.
                       getNumberOfCoinsAtGene(
-                              bestSolutionSoFar1, 0) + " .";
-      String service3 = "\t" +"service 3"+
+                              bestSolutionSoFar1, 0)+"  ";
+      String service3 = "    " +"service 3"+
               MinimizingMakeChangeFitnessFunction.
                       getNumberOfCoinsAtGene(
-                              bestSolutionSoFar1, 1) + " .";
-      String services = service1 + service3;
+                              bestSolutionSoFar1, 1) ;
+      String services = service1 + "->" + service3;
       res.put("bestSolution",bestSolution);
       res.put("services", services);
       System.out.println(service1);
