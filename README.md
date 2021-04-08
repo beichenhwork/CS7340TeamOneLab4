@@ -22,7 +22,7 @@ the calculated fitness value and route.
 If you go back to run again wait approximately 10-15 seconds in between runs, or else the frontend will present null
 as it takes a few seconds to repopulate after running calculation second time.
 
-##Explain the fitness function, how to calculate.
+## Explain the fitness function, how to calculate.
 
 Each chromosome represents different combinations for service clusters. And each service cluster
 has several services. <br>
@@ -58,7 +58,7 @@ Also there are some other details in these attributes.
    ~ favailability = availability(service 1x) * availability(service 2x) * availability(service 3x)
 
 
-##Explain how to build the mapping from business question into the digital world in chromosomes and genes
+## Explain how to build the mapping from business question into the digital world in chromosomes and genes
 For lab4 we have two path in this workflow:
 - Path 1: SC1 -> SC2 -> SC3
 - Path 2: SC1 -> SC3
